@@ -11,6 +11,10 @@ class MoveBallHand:
         self.latest_result = None
         self.base_options = None
         self.options = None
+        self.ball_x = 100
+        self.ball_y = 100
+        self.bottom_ball_x = None
+        self.bottom_ball_y = None
         self.base_options = python.BaseOptions(model_asset_path=self.hand_model)
         self.options = vision.HandLandmarkerOptions(
             base_options=self.base_options,
@@ -51,8 +55,14 @@ class MoveBallHand:
                             # Draw a circle on the joint
                             cv2.circle(frame, (x, y), 5, (0, 255, 0), -1)
                             # Index finger tip
-                        if cv2.waitKey(1) & 0xFF == ord('c'):
-                            cv2.circle(frame, (int(hand_landmarks[8].x * frame.shape[1]) - 100, int(hand_landmarks[8].y * frame.shape[0]) - 100), 20, (255, 0, 0), -1)
+                        # if cv2.waitKey(1) & 0xFF == ord('c'):
+                            # self.ball_x = int(hand_landmarks[8].x * frame.shape[1]) - 100
+                            # self.ball_y = int(hand_landmarks[8].y * frame.shape[0]) - 100
+                        cv2.circle(frame, (self.ball_x, self.ball_y), 20, (255, 0, 0), -1)
+                        self.bottom_ball_x = self.ball_x - 20
+                        # self.bottom_ball_y = self.ball_y - 20
+                        if int(hand_landmarks[8].x * frame.shape[1]) >= self.bottom_ball_x:
+                            self.ball_x += 5
                 cv2.imshow('Move Ball', frame)
                 if cv2.waitKey(1) & 0xFF == ord('q'):
                     break
