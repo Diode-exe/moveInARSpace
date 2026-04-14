@@ -5,6 +5,7 @@ allows the user to move a ball on the screen using their index finger.
 The ball's position is updated
 based on the index finger's tip position relative to the ball's current position."""
 
+import math
 import time
 import cv2
 import mediapipe as mp
@@ -68,15 +69,28 @@ class MoveBallHand:
                         cv2.circle(frame, (self.ball_x, self.ball_y), 20, (255, 0, 0), -1)
                         self.bottom_ball_x = self.ball_x - 20
                         self.bottom_ball_y = self.ball_y - 20
-                        if int(hand_landmarks[8].x * frame.shape[1]) >= self.bottom_ball_x:
-                            self.ball_x += 5
-                        elif int(hand_landmarks[8].x * frame.shape[1]) <= self.bottom_ball_x:
-                            self.ball_x -= 5
+                        # 1. Calculate finger position once
+                        f_x = int(hand_landmarks[8].x * frame.shape[1])
+                        f_y = int(hand_landmarks[8].y * frame.shape[0])
 
-                        if int(hand_landmarks[8].y * frame.shape[0]) >= self.bottom_ball_y:
-                            self.ball_y += 5
-                        elif int(hand_landmarks[8].y * frame.shape[0]) <= self.bottom_ball_y:
-                            self.ball_y -= 5
+                        # 2. Define the ball's center and a "push" radius
+                        # (Assuming self.ball_x/y is the center)
+                        dist_x = f_x - self.ball_x
+                        dist_y = f_y - self.ball_y
+                        distance = math.sqrt(dist_x**2 + dist_y**2)
+
+                        # 3. If finger is inside the ball
+                        if distance < 30:
+                            # Move ball in the opposite direction of the finger
+                            if f_x > self.ball_x:
+                                self.ball_x -= 5 # Finger is to the right, push left
+                            else:
+                                self.ball_x += 5                # Finger is to the left, push right
+
+                            if f_y > self.ball_y:
+                                self.ball_y -= 5 # Finger is below, push up
+                            else:
+                                self.ball_y += 5                # Finger is above, push down
 
                 cv2.imshow('Move Ball', frame)
                 if cv2.waitKey(1) & 0xFF == ord('q'):
