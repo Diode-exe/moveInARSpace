@@ -2,6 +2,33 @@
 
 This project uses MediaPipe and OpenCV to create an augmented reality (AR) space where you can draw in real-time using hand gestures. The application tracks hand landmarks and allows you to draw on the screen by moving your fingers.
 
+
+## Usage
+
+1. Install the required libraries:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+2. Run the ball mover application:
+   ```bash
+    python main.py
+    ```
+
+3. Or run the drawing application:
+   ```bash
+    python draw.py
+    ```
+
+4. Or run the pointer ball application:
+   ```bash
+    python pointer_ball.py
+    ```
+
+5. To exit the application, press the 'q' key.
+
+6. In pointer_ball.py, you need to press and hold the 'c' key to make the ball visible.
+
 ## Notes
 
 You need to download the MediaPipe Hand Landmarker model and place it in the same directory as the `main.py` file. You can download the model from the following link:
