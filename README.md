@@ -30,11 +30,13 @@ This project uses MediaPipe and OpenCV to create an augmented reality (AR) space
 
 5. To exit the application, press the 'q' key.
 
-6. In pointer_ball.py, you need to press and hold the 'c' key to make the ball visible.
+6. In ```pointer_ball.py```, you need to press and hold the 'c' key to make the ball visible.
 
-7. In main.py, press 'r' to reset the ball's position.
+7. In ```main.py```, press 'r' to reset the ball's position.
 
-8. In draw.py, press 'c' to clear the drawing.
+8. In ```draw.py```, press 'c' to clear the drawing.
+
+9. In ```draw.py```, press 'u' to undo the last drawn point.
 
 ## Notes
 
