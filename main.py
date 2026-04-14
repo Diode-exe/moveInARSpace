@@ -5,7 +5,7 @@ allows the user to move a ball on the screen using their index finger.
 The ball's position is updated
 based on the index finger's tip position relative to the ball's current position."""
 
-import math
+# import math
 import time
 import cv2
 import mediapipe as mp
