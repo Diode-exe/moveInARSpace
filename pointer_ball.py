@@ -58,7 +58,7 @@ class PointerBall:
                             cv2.circle(frame, (int(hand_landmarks[8].x * frame.shape[1]) - 100,
                                                int(hand_landmarks[8].y * frame.shape[0]) - 100),
                                        20, (255, 0, 0), -1)
-                cv2.imshow('Move Ball', frame)
+                cv2.imshow('Pointer Ball', frame)
                 if cv2.waitKey(1) & 0xFF == ord('q'):
                     break
 
