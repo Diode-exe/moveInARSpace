@@ -60,9 +60,17 @@ class MoveBallHand:
                             # self.ball_y = int(hand_landmarks[8].y * frame.shape[0]) - 100
                         cv2.circle(frame, (self.ball_x, self.ball_y), 20, (255, 0, 0), -1)
                         self.bottom_ball_x = self.ball_x - 20
-                        # self.bottom_ball_y = self.ball_y - 20
+                        self.bottom_ball_y = self.ball_y - 20
                         if int(hand_landmarks[8].x * frame.shape[1]) >= self.bottom_ball_x:
                             self.ball_x += 5
+                        elif int(hand_landmarks[8].x * frame.shape[1]) <= self.bottom_ball_x:
+                            self.ball_x -= 5
+
+                        if int(hand_landmarks[8].y * frame.shape[0]) >= self.bottom_ball_y:
+                            self.ball_y += 5
+                        elif int(hand_landmarks[8].y * frame.shape[0]) <= self.bottom_ball_y:
+                            self.ball_y -= 5
+
                 cv2.imshow('Move Ball', frame)
                 if cv2.waitKey(1) & 0xFF == ord('q'):
                     break
