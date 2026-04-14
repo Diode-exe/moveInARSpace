@@ -4,7 +4,7 @@ import mediapipe as mp
 from mediapipe.tasks import python
 from mediapipe.tasks.python import vision
 
-class HandDrawing:
+class MoveBallHand:
     """Class to handle hand landmark detection and drawing on the video feed."""
     def __init__(self):
         self.hand_model = "hand_landmarker.task"
@@ -50,12 +50,14 @@ class HandDrawing:
 
                             # Draw a circle on the joint
                             cv2.circle(frame, (x, y), 5, (0, 255, 0), -1)
-                cv2.imshow('AR Space - Manual Drawing', frame)
+                            if cv2.waitKey(1) & 0xFF == ord('c'):
+                                cv2.circle(frame, (100, y), 20, (255, 0, 0), -1)
+                cv2.imshow('Move Ball', frame)
                 if cv2.waitKey(1) & 0xFF == ord('q'):
                     break
 
             cap.release()
             cv2.destroyAllWindows()
 
-hand_drawer = HandDrawing()
-hand_drawer.start_drawing()
+ballmove = MoveBallHand()
+ballmove.start_drawing()
