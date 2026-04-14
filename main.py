@@ -5,6 +5,7 @@ from mediapipe.tasks import python
 from mediapipe.tasks.python import vision
 
 class HandDrawing:
+    """Class to handle hand landmark detection and drawing on the video feed."""
     def __init__(self):
         self.hand_model = "hand_landmarker.task"
         self.latest_result = None
@@ -24,12 +25,14 @@ class HandDrawing:
         self.latest_result = result
 
     def start_drawing(self):
+        """Start the video capture and drawing loop."""
         with vision.HandLandmarker.create_from_options(self.options) as landmarker:
             cap = cv2.VideoCapture(0)
 
             while cap.isOpened():
                 success, frame = cap.read()
-                if not success: break
+                if not success:
+                    break
 
                 # Mirror the frame for a more natural "AR" feel
                 frame = cv2.flip(frame, 1)
