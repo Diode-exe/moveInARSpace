@@ -23,6 +23,7 @@ class MoveBallHand:
         self.ball_y = 100
         self.bottom_ball_x = None
         self.bottom_ball_y = None
+        self.key = None
         self.base_options = python.BaseOptions(model_asset_path=self.hand_model)
         self.options = vision.HandLandmarkerOptions(
             base_options=self.base_options,
@@ -93,10 +94,12 @@ class MoveBallHand:
                                 self.ball_y += 5                # Finger is above, push down
 
                 cv2.imshow('Move Ball', frame)
-                if cv2.waitKey(1) & 0xFF == ord('q'):
-                    break
 
-                if cv2.waitKey(1) & 0xFF == ord('r'):
+                self.key = cv2.waitKey(1) & 0xFF
+
+                if self.key == ord('q'):
+                    break
+                elif self.key == ord('r'):
                     self.ball_x = 100
                     self.ball_y = 100
 
