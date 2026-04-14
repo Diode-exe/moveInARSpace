@@ -1,6 +1,9 @@
+"""Draw on the live webcam feed with your index finger using MediaPipe's Hand Landmarker.
+Press 'c' to clear the drawing and 'q' to quit."""
+
+import time
 import cv2
 import mediapipe as mp
-import time
 from mediapipe.tasks import python
 from mediapipe.tasks.python import vision
 
@@ -9,6 +12,7 @@ latest_result = None
 draw_list = []  # List to store points for drawing
 
 def update_result(result: vision.HandLandmarkerResult, output_image: mp.Image, timestamp_ms: int):
+    """Callback function to update the latest hand landmark results."""
     global latest_result
     latest_result = result
 
@@ -26,7 +30,8 @@ with vision.HandLandmarker.create_from_options(options) as landmarker:
 
     while cap.isOpened():
         success, frame = cap.read()
-        if not success: break
+        if not success:
+            break
 
         # Mirror the frame for a more natural "AR" feel
         frame = cv2.flip(frame, 1)

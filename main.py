@@ -1,3 +1,10 @@
+"""This script uses MediaPipe's Hand Landmarker to detect hand landmarks
+in real-time from a webcam feed.
+It draws circles on the detected hand joints and
+allows the user to move a ball on the screen using their index finger.
+The ball's position is updated
+based on the index finger's tip position relative to the ball's current position."""
+
 import time
 import cv2
 import mediapipe as mp

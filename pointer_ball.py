@@ -1,3 +1,6 @@
+"""Draw on the live webcam feed with your index finger using MediaPipe's Hand Landmarker.
+Press 'c' to clear the drawing and 'q' to quit."""
+
 import time
 import cv2
 import mediapipe as mp
@@ -52,7 +55,9 @@ class MoveBallHand:
                             cv2.circle(frame, (x, y), 5, (0, 255, 0), -1)
                             # Index finger tip
                         if cv2.waitKey(1) & 0xFF == ord('c'):
-                            cv2.circle(frame, (int(hand_landmarks[8].x * frame.shape[1]) - 100, int(hand_landmarks[8].y * frame.shape[0]) - 100), 20, (255, 0, 0), -1)
+                            cv2.circle(frame, (int(hand_landmarks[8].x * frame.shape[1]) - 100,
+                                               int(hand_landmarks[8].y * frame.shape[0]) - 100),
+                                       20, (255, 0, 0), -1)
                 cv2.imshow('Move Ball', frame)
                 if cv2.waitKey(1) & 0xFF == ord('q'):
                     break
