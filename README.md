@@ -32,6 +32,8 @@ This project uses MediaPipe and OpenCV to create an augmented reality (AR) space
 
 6. In pointer_ball.py, you need to press and hold the 'c' key to make the ball visible.
 
+7. In main.py, press 'r' to reset the ball's position.
+
 ## Notes
 
 You need to download the MediaPipe Hand Landmarker model and place it in the same directory as the `main.py` file. You can download the model from the following link:
