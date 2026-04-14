@@ -7,7 +7,7 @@ import mediapipe as mp
 from mediapipe.tasks import python
 from mediapipe.tasks.python import vision
 
-class MoveBallHand:
+class PointerBall:
     """Class to handle hand landmark detection and drawing on the video feed."""
     def __init__(self):
         self.hand_model = "hand_landmarker.task"
@@ -65,5 +65,5 @@ class MoveBallHand:
             cap.release()
             cv2.destroyAllWindows()
 
-ballmove = MoveBallHand()
-ballmove.start_drawing()
+pointer = PointerBall()
+pointer.start_drawing()
