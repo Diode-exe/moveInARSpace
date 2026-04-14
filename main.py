@@ -96,6 +96,10 @@ class MoveBallHand:
                 if cv2.waitKey(1) & 0xFF == ord('q'):
                     break
 
+                if cv2.waitKey(1) & 0xFF == ord('r'):
+                    self.ball_x = 100
+                    self.ball_y = 100
+
             cap.release()
             cv2.destroyAllWindows()
 
