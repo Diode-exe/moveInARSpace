@@ -77,10 +77,10 @@ class MoveBallHand:
                         # (Assuming self.ball_x/y is the center)
                         dist_x = f_x - self.ball_x
                         dist_y = f_y - self.ball_y
-                        distance = math.sqrt(dist_x**2 + dist_y**2)
+                        # distance = math.sqrt(dist_x**2 + dist_y**2)
 
                         # 3. If finger is inside the ball
-                        if distance < 30:
+                        if (dist_x**2 + dist_y**2) < 900:
                             # Move ball in the opposite direction of the finger
                             if f_x > self.ball_x:
                                 self.ball_x -= 5 # Finger is to the right, push left
