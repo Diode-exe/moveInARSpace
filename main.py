@@ -38,6 +38,15 @@ class HandDrawing:
                 rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
                 mp_image = mp.Image(image_format=mp.ImageFormat.SRGB, data=rgb_frame)
                 landmarker.detect_async(mp_image, int(time.time() * 1000))
+                if self.latest_result and self.latest_result.hand_landmarks:
+                    for hand_landmarks in self.latest_result.hand_landmarks:
+                        for landmark in hand_landmarks:
+                            # Convert normalized (0.0 to 1.0) to pixel coordinates
+                            x = int(landmark.x * frame.shape[1])
+                            y = int(landmark.y * frame.shape[0])
+
+                            # Draw a circle on the joint
+                            cv2.circle(frame, (x, y), 5, (0, 255, 0), -1)
                 cv2.imshow('AR Space - Manual Drawing', frame)
                 if cv2.waitKey(1) & 0xFF == ord('q'):
                     break
