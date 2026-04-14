@@ -93,6 +93,13 @@ class Draw:
 
                 if self.key == ord('c'):
                     self.draw_list.clear()  # Clear the drawing when 'c' is pressed
+                
+                if self.key == ord('u'):
+                    if self.draw_list:
+                        self.draw_list.pop()  # Remove the last point when 'u' is pressed
 
             cap.release()
             cv2.destroyAllWindows()
+
+draw = Draw()
+draw.start_drawing()
